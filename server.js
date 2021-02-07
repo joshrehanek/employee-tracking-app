@@ -11,13 +11,13 @@ async function viewAllDepartments() {
 async function viewAllRoles() {
   const roles = await db.viewAllRoles();
   console.table(roles);
-  mainMenu();
+  // mainMenu();
 }
 
 async function viewAllEmployees() {
   const employees = await db.viewAllEmployees();
   console.table(employees);
-  mainMenu();
+  // mainMenu();
 }
 
 async function addRole() {
@@ -52,6 +52,17 @@ viewAllRoles();
 
 
 viewAllEmployees();
+
+// add switch statement to handle conditions
+// add update employee roles function
+// add ADD departments function
+// add ADD employee function
+
+// Bonus
+// add UPDATE employee managers function
+// add function to view employees by manager
+// add DELETE functions for all sections
+// view combined salaries of all employees in a single department
 
 
 

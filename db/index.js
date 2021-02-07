@@ -57,10 +57,7 @@ class DB {
             LEFT JOIN
             role ON 
             employee.role_id = role.id 
-
-            LEFT JOIN
-            role ON
-            employee.manager_id = employee.id
+ 
 
             ORDER BY
             role.id

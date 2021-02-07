@@ -1,55 +1,57 @@
-const cTable = require('console.table');
-const mysql = require("mysql");
+require('console.table');
 const inquirer = require("inquirer");
+const db = require("./db");
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
-    user: "root",
-    password: "Anime100587",
-    database: "employee_trackerDB"
-});
+async function viewAllDepartments() {
+  const departments = await db.viewAllDepartments();
+  console.table(departments);
+  mainMenu();
+}
 
-connection.connect((err, res) => {
-    if (err) throw err;
-    makeAction();
-});
+async function viewAllRoles() {
+  const roles = await db.viewAllRoles();
+  console.table(roles);
+  mainMenu();
+}
 
-const makeAction = () => {
-    inquirer.prompt({
-        name: 'action',
-        type: 'list',
-        message: 'What would you like to do?',
-        choices: [
-           
-        ]
-    }).then((answer) => {
-        switch (answer.action) {
-            case :
-                break;
+async function viewAllEmployees() {
+  const employees = await db.viewAllEmployees();
+  console.table(employees);
+  mainMenu();
+}
 
-            case :
-                break;
+async function addRole() {
+  const departments = await db.viewAllDepartments();
+  const departmentChoices = departments.map(({ id, name }) => ({
+    name: name,
+    value: id
+  }))
 
-            case :
-                
-                break;
+  const role = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'title',
+      message: 'What new title what you like to add?'
+    },
+    {
+      type: 'input',
+      name: 'salary',
+      message: 'What is the salary?'
+    },
+    {
+      type: 'list',
+      name: 'department_id',
+      message: 'What is the department ID?',
+      choices: departmentChoices
+    }
+  ])
+await db.addRole(role);
+viewAllRoles();
+// mainMenu();
+}
 
-            case :
-               
-                break;
 
-            case :
-                
-                break;
+viewAllEmployees();
 
-            case 'Finished':
-                connection.end();
-                break;
 
-            default:
-                console.log(`Invalid action: ${answer.action}`);
-                break;
-        }
-    });
-};
+

@@ -12,9 +12,9 @@ const mainMenu = () => {
         'View all departments.',
         'View all roles.',
         'View all employees.',
-        'Add a department.',
-        'Add a role.',
-        'Add a employee.',
+        'Add a new department.',
+        'Add a new role.',
+        'Add a new employee.',
         'Update employee roles.',
         'Update employee managers.',
         'View employees by manager.',
@@ -23,6 +23,7 @@ const mainMenu = () => {
         'Delete employees',
         'View budget for department',
         'Exit',
+        ''
       ],
     })
     .then((answer) => {
@@ -39,20 +40,20 @@ const mainMenu = () => {
           viewAllEmployees();
           break;
 
-        case 'Add a department.':
+        case 'Add a new department.':
           addDepartment();
           break;
 
-        case 'Add a role.':
+        case 'Add a new role.':
           addRole();
           break;
 
-        case 'Add an employee.':
+        case 'Add a new employee.':
           addEmployee();
           break;
 
         case 'Update employee roles.':
-          updateEmployee();
+          updateEmployeeRole();
           break;
 
         case 'Update employee managers.':
@@ -90,10 +91,13 @@ const mainMenu = () => {
     });
 };
 
-
+// async function to view all departments
 async function viewAllDepartments() {
+  //departments variable which set to view all departments function from index.js in db folder
   const departments = await db.viewAllDepartments();
+  // console tables departments variable
   console.table(departments);
+  // runs main menu prompt 
   mainMenu();
 }
 
@@ -110,11 +114,6 @@ async function viewAllEmployees() {
 }
 
 async function addDepartment() {
-  // const departments = await db.viewAllDepartments();
-  // const departmentChoices = departments.map(({ id, name }) => ({
-  //   name: name,
-  //   value: id
-  // }))
 
   const department = await inquirer.prompt([
     {
@@ -129,8 +128,8 @@ async function addDepartment() {
     },
     
   ])
-  await db.addDepartment(department);
-  viewAllDepartments();
+ await db.addDepartment(department);
+  console.table(  );
   mainMenu();
 }
 
@@ -164,13 +163,85 @@ async function addRole() {
   mainMenu();
 }
 
+async function addEmployee() {
+  const roles = await db.viewAllEmployees();
+  const roleChoices = roles.map(({ role_id }) => ({
+    name: role_id,
+    value: role_id
+  }))
+
+  const employees = await db.viewAllEmployees();
+  const managerIdChoices = employees.map(({ manager_id, title }) => ({
+    name: title,
+    value: manager_id
+  }))
+
+  const employee = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'first_name',
+      message: "What is the new employees' first name?"
+    },
+    {
+      type: 'input',
+      name: 'last_name',
+      message: "What is the new employees' last name?"
+    },
+    {
+      type: 'list',
+      name: 'role_id',
+      message: "What is the new employees' role ID?",
+      choices: roleChoices
+    },
+    {
+      type: 'list',
+      name: 'manager_id',
+      message: 'What is the manager ID?',
+      choices: managerIdChoices
+    }
+  ])
+  await db.addEmployee(employee);
+  viewAllEmployees();
+  mainMenu();
+}
+
+async function updateEmployeeRole() {
+  const roles = await db.viewAllEmployees();
+  const roleChoices = roles.map(({ role_id }) => ({
+    name: role_id,
+    value: role_id
+  }))
+  const employeeChoices = roles.map(({ id, first_name, last_name}) => ({
+    name: first_name,
+    value: id
+  
+  })); 
+
+  const employee = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'first_name',
+      message: "Whose role would you like to update?",
+      choices: employeeChoices
+    },
+    {
+      type: 'list',
+      name: 'role_id',
+      message: 'What is the employees new role ID?',
+      choices: roleChoices
+    }
+  ])
+  await db.addEmployee(employee);
+  viewAllEmployees();
+  mainMenu();
+}
+
 
 mainMenu();
 
-// add switch statement to handle conditions
 // add update employee roles function
-// add ADD departments function
-// add ADD employee function
+// add ADD departments function (console.table bug)
+// add ADD employee function (console.table bug)
 
 // Bonus
 // add UPDATE employee managers function

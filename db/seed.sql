@@ -26,10 +26,10 @@ VALUES
     ('Daenerys', 'Targaryen', 1, NULL),
     ('Rhaehgar', 'Targaryen', 2, 1),
     ('George', 'Targaryen', 3, 1),
-    ('Tywin', 'Lannister', 4, NULL),
+    ('Tywin', 'Lannister', 1, NULL),
     ('Joanna', 'Lannister', 5, 4),
     ('Jamie', 'Lannister', 6, 4),
-    ('Ed', 'Stark', 7, NULL),
+    ('Ed', 'Stark', 1, NULL),
     ('Sansa', 'Stark', 8, 7),
     ('Jon', 'Snow', 9, 7);
 

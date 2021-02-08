@@ -109,6 +109,31 @@ async function viewAllEmployees() {
   mainMenu();
 }
 
+async function addDepartment() {
+  // const departments = await db.viewAllDepartments();
+  // const departmentChoices = departments.map(({ id, name }) => ({
+  //   name: name,
+  //   value: id
+  // }))
+
+  const department = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'id',
+      message: 'What is the new department ID?'
+    },
+    {
+      type: 'input',
+      name: 'name',
+      message: 'What is the new department name?'
+    },
+    
+  ])
+  await db.addDepartment(department);
+  viewAllDepartments();
+  mainMenu();
+}
+
 async function addRole() {
   const departments = await db.viewAllDepartments();
   const departmentChoices = departments.map(({ id, name }) => ({

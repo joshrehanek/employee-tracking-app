@@ -9,7 +9,7 @@ class DB {
             ` 
             SELECT 
             department.id,
-            department.name 
+            department.name AS department
             
             FROM 
             department
@@ -86,5 +86,7 @@ class DB {
         );
     }
 }
+
+
 
 module.exports = new DB(connection);

@@ -2,6 +2,83 @@ require('console.table');
 const inquirer = require("inquirer");
 const db = require("./db");
 
+const mainMenu = () => {
+  inquirer
+    .prompt({
+      name: 'action',
+      type: 'list',
+      message: 'What would you like to do?',
+      choices: [
+        'View all departments.',
+        'View all roles.',
+        'View all employees.',
+        'Add a department.',
+        'Add a role.',
+        'Add a employee.',
+        'Update employee roles.',
+        'Update employee managers.',
+        'View employees by manager.',
+        'Delete department.',
+        'Delete role.',
+        'Delete employees',
+        'View budget for department',
+        'exit',
+      ],
+    })
+    .then((answer) => {
+      switch (answer.action) {
+        case 'View all departments.':
+          artistSearch();
+          break;
+
+        case 'View all roles.':
+          multiSearch();
+          break;
+
+        case 'View all employees.':
+          rangeSearch();
+          break;
+
+        case 'Add a department.':
+          songSearch();
+          break;
+
+        case 'Add a role.':
+          songSearch();
+          break;
+
+        case 'Add an employee.':
+          songSearch();
+          break;
+
+        case 'Update employee roles.':
+          songSearch();
+          break;
+
+        case 'Update employee managers.':
+          songSearch();
+          break;
+
+        case 'Update employee managers.':
+          songSearch();
+          break;
+
+        case 'Update employee managers.':
+          songSearch();
+          break;
+
+        case 'Exit':
+          connection.end();
+          break;
+
+        default:
+          console.log(`Invalid action: ${answer.action}`);
+          break;
+      }
+    });
+};
+
+
 async function viewAllDepartments() {
   const departments = await db.viewAllDepartments();
   console.table(departments);
@@ -11,13 +88,13 @@ async function viewAllDepartments() {
 async function viewAllRoles() {
   const roles = await db.viewAllRoles();
   console.table(roles);
-  // mainMenu();
+  mainMenu();
 }
 
 async function viewAllEmployees() {
   const employees = await db.viewAllEmployees();
   console.table(employees);
-  // mainMenu();
+  mainMenu();
 }
 
 async function addRole() {
@@ -45,13 +122,13 @@ async function addRole() {
       choices: departmentChoices
     }
   ])
-await db.addRole(role);
-viewAllRoles();
-// mainMenu();
+  await db.addRole(role);
+  viewAllRoles();
+  // mainMenu();
 }
 
 
-viewAllEmployees();
+mainMenu();
 
 // add switch statement to handle conditions
 // add update employee roles function

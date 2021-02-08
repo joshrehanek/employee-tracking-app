@@ -129,8 +129,7 @@ async function addDepartment() {
     
   ])
  await db.addDepartment(department);
-  console.table(  );
-  mainMenu();
+  viewAllDepartments();
 }
 
 async function addRole() {
@@ -160,7 +159,6 @@ async function addRole() {
   ])
   await db.addRole(role);
   viewAllRoles();
-  mainMenu();
 }
 
 async function addEmployee() {
@@ -202,7 +200,6 @@ async function addEmployee() {
   ])
   await db.addEmployee(employee);
   viewAllEmployees();
-  mainMenu();
 }
 
 async function updateEmployeeRole() {
@@ -233,11 +230,11 @@ async function updateEmployeeRole() {
   ])
   await db.addEmployee(employee);
   viewAllEmployees();
-  mainMenu();
 }
 
 
 mainMenu();
+
 
 // add update employee roles function
 // add ADD departments function (console.table bug)

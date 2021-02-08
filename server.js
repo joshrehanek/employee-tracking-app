@@ -22,53 +22,65 @@ const mainMenu = () => {
         'Delete role.',
         'Delete employees',
         'View budget for department',
-        'exit',
+        'Exit',
       ],
     })
     .then((answer) => {
       switch (answer.action) {
         case 'View all departments.':
-          artistSearch();
+          viewAllDepartments();
           break;
 
         case 'View all roles.':
-          multiSearch();
+          viewAllRoles();
           break;
 
         case 'View all employees.':
-          rangeSearch();
+          viewAllEmployees();
           break;
 
         case 'Add a department.':
-          songSearch();
+          addDepartment();
           break;
 
         case 'Add a role.':
-          songSearch();
+          addRole();
           break;
 
         case 'Add an employee.':
-          songSearch();
+          addEmployee();
           break;
 
         case 'Update employee roles.':
-          songSearch();
+          updateEmployee();
           break;
 
         case 'Update employee managers.':
-          songSearch();
+          updateEmployeeManager();
           break;
 
-        case 'Update employee managers.':
-          songSearch();
+        case 'View employees by manager.':
+          viewEmployeesByManager();
           break;
 
-        case 'Update employee managers.':
-          songSearch();
+        case 'Delete department.':
+          deleteDepartment();
+          break;
+
+        case 'Delete role.':
+          deleteRole();
+          break;
+
+        case 'Delete employee.':
+          deleteEmployee();
+          break;
+
+        case 'View budget for department.':
+          viewBudget();
           break;
 
         case 'Exit':
-          connection.end();
+          db.connection.end();
           break;
 
         default:
@@ -124,7 +136,7 @@ async function addRole() {
   ])
   await db.addRole(role);
   viewAllRoles();
-  // mainMenu();
+  mainMenu();
 }
 
 

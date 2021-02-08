@@ -85,6 +85,16 @@ class DB {
             `, role
         );
     }
+    addEmployee(employee) {
+        return this.connection.query(
+            `
+            INSERT INTO
+                employee  
+            SET
+                ?
+            `, employee
+        );
+    }
 }
 
 

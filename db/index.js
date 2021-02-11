@@ -43,8 +43,7 @@ class DB {
     }
     viewAllEmployees() {
         return this.connection.query(
-            `
-            SELECT 
+           ` SELECT 
             employee.id,
             employee.first_name,
             employee.last_name,
@@ -61,7 +60,7 @@ class DB {
 
             ORDER BY
             role.id
-
+            
             `
         )
     }
@@ -95,16 +94,18 @@ class DB {
             `, employee
         );
     }
-    updateEmployeeRole(role_id, id) {
+    updateEmployeeRole(title, id) {
+
         return this.connection.query(
             `
         UPDATE 
-            employee
+            role
         SET
-            role_id = ?
-        WHERE
             id = ?
-        `, [role_id, id]
+            
+        WHERE
+            title = ?
+        `, [title, id]
         );
     }
 }

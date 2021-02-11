@@ -204,9 +204,9 @@ async function addEmployee() {
 
 async function updateEmployeeRole() {
   const roles = await db.viewAllRoles();
-  const roleChoices = roles.map(({ role_id, title }) => ({
+  const roleChoices = roles.map(({ title, id }) => ({
     name: title,
-    value: role_id
+    value: id
   }))
   const employees = await db.viewAllEmployees();
   const employeeChoices = employees.map(({ id, first_name}) => ({
@@ -225,24 +225,22 @@ async function updateEmployeeRole() {
 
     {
       type: 'list',
-      name: 'role_id',
+      name: 'title',
       message: 'What is the employees new role ID?',
       choices: roleChoices
     }
+    
   ])
- 
+  console.log(employeeRole);
   await db.updateEmployeeRole(employeeRole);
   viewAllEmployees();
 
 }
 
-
 mainMenu();
 
 
 // add update employee roles function
-// add ADD departments function (console.table bug)
-// add ADD employee function (console.table bug)
 
 // Bonus
 // add UPDATE employee managers function

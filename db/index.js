@@ -94,18 +94,19 @@ class DB {
             `, employee
         );
     }
-    updateEmployeeRole(title, id) {
-
+    updateEmployeeRole(roleID, employeeID) {
+        console.log(roleID, employeeID);
         return this.connection.query(
             `
         UPDATE 
-            role
+            employee
         SET
-            id = ?
+            role_id = ?
             
         WHERE
-            title = ?
-        `, [title, id]
+
+            id = ?
+        `, [roleID, employeeID]
         );
     }
 }

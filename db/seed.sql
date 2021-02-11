@@ -3,35 +3,32 @@ use employee_trackerDB;
 INSERT INTO department
     (name)
 VALUES 
-    ('Targaryen'),
-    ('Lannister'),
-    ('Stark');
+    ('Manager'),
+    ('Engineer'),
+    ('Sales');
 
 INSERT INTO role
     (title, salary, department_id)
 VALUES
-    ('Targaryen Queen', 750000, 1),
-    ('Targaryen King', 500000, 1),
-    ('Targaryen Knight', 50000, 1),
-    ('Lannister King', 1000000, 2),
-    ('Lannister Queen', 1000000, 2),
-    ('Lannister Knight', 60000, 2),
-    ('Stark King', 250000, 3),
-    ('Stark Queen', 250000, 3),
-    ('Stark Knight', 50000, 3);
+    ('Manager', 750000, 1),
+    ('Manager', 500000, 1),
+    ('Manager', 50000, 1),
+    ('Engineer', 1000000, 2),
+    ('Engineer', 1000000, 2),
+    ('Sales', 250000, 3),
+    ('Sales', 250000, 3),
 
 INSERT INTO employee
     (first_name, last_name, role_id, manager_id)
 VALUES  
-    ('Daenerys', 'Targaryen', 1, NULL),
-    ('Rhaehgar', 'Targaryen', 2, 1),
-    ('George', 'Targaryen', 3, 1),
-    ('Tywin', 'Lannister', 1, NULL),
-    ('Joanna', 'Lannister', 5, 4),
-    ('Jamie', 'Lannister', 6, 4),
-    ('Ed', 'Stark', 1, NULL),
-    ('Sansa', 'Stark', 8, 7),
-    ('Jon', 'Snow', 9, 7);
+    ('Micheal', 'Scott', 1, NULL),
+    ('Ryan', 'Howard', 2, 1),
+    ('Rigby', 'Raccoon', 3, 1),
+    ('Benson', 'Hedges', 1, NULL),
+    ('Skips', 'Wellington', 5, 4),
+    ('Mika', 'Bella', 1, NULL),
+    ('Josh', 'Rehanek', 8, 7),
+ 
 
 
 

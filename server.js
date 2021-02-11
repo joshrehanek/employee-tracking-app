@@ -209,8 +209,8 @@ async function updateEmployeeRole() {
     value: id
   }))
   const employees = await db.viewAllEmployees();
-  const employeeChoices = employees.map(({ id, first_name}) => ({
-    name: first_name,
+  const employeeChoices = employees.map(({ id, first_name, last_name}) => ({
+    name: `${first_name} ${last_name}`,
     value: id
   
   })); 
@@ -225,7 +225,7 @@ async function updateEmployeeRole() {
 
     {
       type: 'list',
-      name: 'title',
+      name: 'role_id',
       message: 'What is the employees new role ID?',
       choices: roleChoices
     }
@@ -239,7 +239,14 @@ async function updateEmployeeRole() {
 
 mainMenu();
 
+// connection.query("SELECT * from role", function (error, res) {
+//   showroles = res.map(role => ({ name: role.title, value: role.id }))
+// })
 
+// connection.query("SELECT * from employee", function (error, res) {
+//   // console.log(error, res);
+// //   showemployees = res.map(emp => ({ name: `${emp.first_name} ${emp.last_name}`, value: emp.id }))
+// })
 // add update employee roles function
 
 // Bonus

@@ -203,24 +203,26 @@ async function addEmployee() {
 }
 
 async function updateEmployeeRole() {
-  const roles = await db.viewAllEmployees();
-  const roleChoices = roles.map(({ role_id }) => ({
-    name: role_id,
+  const roles = await db.viewAllRoles();
+  const roleChoices = roles.map(({ role_id, title }) => ({
+    name: title,
     value: role_id
   }))
-  const employeeChoices = roles.map(({ id, first_name, last_name}) => ({
+  const employees = await db.viewAllEmployees();
+  const employeeChoices = employees.map(({ id, first_name}) => ({
     name: first_name,
     value: id
   
   })); 
 
-  const employee = await inquirer.prompt([
+  const employeeRole = await inquirer.prompt([
     {
       type: 'list',
-      name: 'first_name',
+      name: 'id',
       message: "Whose role would you like to update?",
       choices: employeeChoices
     },
+
     {
       type: 'list',
       name: 'role_id',
@@ -228,8 +230,10 @@ async function updateEmployeeRole() {
       choices: roleChoices
     }
   ])
-  await db.addEmployee(employee);
+ 
+  await db.updateEmployeeRole(employeeRole);
   viewAllEmployees();
+
 }
 
 

@@ -106,7 +106,7 @@ class DB {
             
         WHERE
 
-            id = ${employeeRole.id}
+            id = ${employeeRole.empId}
 
         `, employeeRole
         );

@@ -237,7 +237,24 @@ async function updateEmployeeRole() {
 
 }
 
+async function deleteDepartment() {
+
+  const deleteDepartment = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'name',
+      message: 'What department would you like to delete?'
+    },
+ 
+  ])
+  console.log(deleteDepartment);
+ await db.deleteDepartment(deleteDepartment);
+  viewAllDepartments();
+}
+
 mainMenu();
+
+
 
 
 // add update employee roles function

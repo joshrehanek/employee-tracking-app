@@ -111,21 +111,17 @@ class DB {
         `, employeeRole
         );
     }
+    deleteDepartment(deleteDepartment) {
+        return this.connection.query(
+            `
+        DELETE FROM
+            department
+        WHERE
+            ?
+        `, deleteDepartment
+        );
+    }
 }
 
 module.exports = new DB(connection);
 
-
-// UPDATE 
-// employee, role
-
-// LEFT JOIN
-// role ON 
-// employee.role_id = r2.id 
-
-// SET
-// employee.role_id = role.id,
-// role.id = 4
-// WHERE
-
-// id = 1

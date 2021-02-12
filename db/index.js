@@ -43,7 +43,7 @@ class DB {
     }
     viewAllEmployees() {
         return this.connection.query(
-           ` SELECT 
+            ` SELECT 
             employee.id,
             employee.first_name,
             employee.last_name,
@@ -94,23 +94,38 @@ class DB {
             `, employee
         );
     }
-    updateEmployeeRole(roleID, employeeID) {
-        console.log(roleID, employeeID);
+    updateEmployeeRole(employeeRole) {
+        console.log(employeeRole);
         return this.connection.query(
             `
         UPDATE 
             employee
+            
         SET
-            role_id = ?
+            role_id = ${employeeRole.newRole}
             
         WHERE
 
-            id = ?
-        `, [roleID, employeeID]
+            id = ${employeeRole.id}
+
+        `, employeeRole
         );
     }
 }
 
-
-
 module.exports = new DB(connection);
+
+
+// UPDATE 
+// employee, role
+
+// LEFT JOIN
+// role ON 
+// employee.role_id = r2.id 
+
+// SET
+// employee.role_id = role.id,
+// role.id = 4
+// WHERE
+
+// id = 1

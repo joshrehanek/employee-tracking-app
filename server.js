@@ -252,6 +252,24 @@ async function deleteDepartment() {
   viewAllDepartments();
 }
 
+async function deleteRole() {
+  const departments = await db.viewAllDepartments();
+  const departmentChoices = departments.map(({ id, name }) => ({
+    name: name,
+    value: id
+  }))
+
+  const deleteRole = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'title',
+      message: 'What role would you like to delete?'
+    }
+  ])
+  await db.deleteRole(deleteRole);
+  viewAllRoles();
+}
+
 mainMenu();
 
 

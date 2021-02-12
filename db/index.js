@@ -121,6 +121,16 @@ class DB {
         `, deleteDepartment
         );
     }
+    deleteRole(deleteRole) {
+        return this.connection.query(
+            `
+        DELETE FROM
+            role
+        WHERE
+            ?
+        `, deleteRole
+        );
+    }
 }
 
 module.exports = new DB(connection);

@@ -284,7 +284,7 @@ async function deleteRole() {
   const deleteRole = await inquirer.prompt([
     {
       type: 'input',
-      name: 'role',
+      name: 'title',
       message: 'What role would you like to delete?'
     }
   ])

@@ -293,17 +293,3 @@ async function deleteRole() {
 }
 
 mainMenu();
-
-
-
-
-// add update employee roles function
-
-// Bonus
-// add UPDATE employee managers function
-// add function to view employees by manager
-// add DELETE functions for all sections
-// view combined salaries of all employees in a single department
-
-
-

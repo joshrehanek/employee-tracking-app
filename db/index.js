@@ -1,9 +1,15 @@
+//import module
 const connection = require('./connection');
 
+//sets up DB class
 class DB {
+    //sets up connection constructor for easy query referencing 
     constructor(connection) {
         this.connection = connection;
     }
+
+    // Queries
+
     viewAllDepartments() {
         return this.connection.query(
             ` 
@@ -95,7 +101,6 @@ class DB {
         );
     }
     updateEmployeeRole(employeeRole) {
-        console.log(employeeRole);
         return this.connection.query(
             `
         UPDATE 
